@@ -60,34 +60,15 @@ backup_file() {
 
 # Function to implement GRUB kernel parameter fix (Most effective solution)
 fix_grub_kernel_parameters() {
-    print_status "Implementing GRUB kernel parameter fix (Most effective solution)..."
-    
-    local grub_file="/etc/default/grub"
-    backup_file "$grub_file"
-    
-    # Check if parameter is already present
-    if sudo grep -q "acpi.ec_no_wakeup=1" "$grub_file"; then
-        print_warning "acpi.ec_no_wakeup=1 parameter already exists in GRUB configuration"
-        return 0
-    fi
-    
-    # Add the parameter to GRUB_CMDLINE_LINUX_DEFAULT
-    print_status "Adding acpi.ec_no_wakeup=1 to GRUB kernel parameters..."
-    
-    # Get current GRUB_CMDLINE_LINUX_DEFAULT value
-    local current_cmdline=$(sudo grep '^GRUB_CMDLINE_LINUX_DEFAULT=' "$grub_file" | cut -d'"' -f2)
-    
-    # Add our parameter
-    local new_cmdline="$current_cmdline acpi.ec_no_wakeup=1"
-    
-    # Update the GRUB configuration
-    sudo sed -i "s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT=\"$new_cmdline\"/" "$grub_file"
-    
-    # Update GRUB
-    print_status "Updating GRUB configuration..."
-    sudo update-grub
-    
-    print_success "GRUB kernel parameter fix applied successfully"
+    print_status "GRUB kernel parameter fix (Most effective solution)..."
+    print_warning "GRUB configuration must be done manually to avoid syntax errors."
+    print_status "To apply the GRUB fix manually:"
+    echo "  1. Copy reference config: cp grub.reference /etc/default/grub"
+    echo "  2. Edit to add: acpi.ec_no_wakeup=1 to GRUB_CMDLINE_LINUX_DEFAULT"
+    echo "  3. Run: sudo update-grub"
+    echo "  4. Reboot to apply changes"
+    echo
+    print_warning "Skipping automatic GRUB modification to prevent configuration errors."
 }
 
 # Function to implement NVIDIA power management services fix (Alternative approach)

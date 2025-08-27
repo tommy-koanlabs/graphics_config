@@ -1,8 +1,8 @@
 # Execution Order Recommendation
 ```bash 
 #Run in this order:
-bash nvidia_sleep_fix_script.sh          # Fixes sleep issues BROKEN DONT RUN
-bash install_monitor_manager.sh          # Sets up infrastructure
+#bash nvidia_sleep_fix_script.sh          # Fixes sleep issues BROKEN DONT RUN this is completely broken. Try manually editing the grub
+bash install_monitor_manager.sh          # Sets up infrastructure (New version broken! Manually copied over old script, it will introduce delays)
 bash setup_monitor_positioning.sh        # Enhances with better positioning
 ```
 
@@ -32,3 +32,28 @@ bash setup_monitor_positioning.sh        # Enhances with better positioning
 
 - Backup `/etc/default/grub` to `/etc/default/grub.backup.[timestamp]`
 - Backup `/etc/modprobe.d/nvidia-graphics-drivers-kms.conf` to `/etc/modprobe.d/nvidia-graphics-drivers-kms.conf.backup.[timestamp]` (if file exists)
+
+## UPDATE 8/27/25:
+Going to try the fix found at the end of this thread: https://forums.linuxmint.com/viewtopic.php?p=2103191#p2103191
+ If that doesnt work will try adding GRUB_CMDLINE_LINUX="quiet splash acpi.ec_no_wakeup=1 pcie_aspm=off" (Default too)
+
+ /usr/bin/nvidia-sleep.sh
+ Addding "exit 0" at the top solved the problem.
+
+ ```bash
+ #!/bin/bash
+
+exit 0
+
+if [ ! -f /proc/driver/nvidia/suspend ]; then
+    exit 0
+fi
+
+RUN_DIR="/var/run/nvidia-sleep"
+XORG_VT_FILE="${RUN_DIR}"/Xorg.vt_number
+
+PATH="/bin:/usr/bin"
+
+case "$1" in
+    suspend|hibernate)
+    ...

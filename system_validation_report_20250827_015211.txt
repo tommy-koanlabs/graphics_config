@@ -1,0 +1,80 @@
+==============================================
+System Configuration Validation Report
+==============================================
+Generated: Wed Aug 27 01:52:11 AM EDT 2025
+
+=== System Information ===
+Distribution: Ubuntu 24.04.3 LTS
+Kernel: 6.8.0-78-generic
+Architecture: x86_64
+NVIDIA Driver: 550.163.01
+
+=== Files Status ===
+✓ Monitor manager script: EXISTS (executable)
+✓ Udev monitor hotplug rule: EXISTS
+✓ Systemd user service file: EXISTS
+✓ Monitor manager log file: EXISTS
+✓ NVIDIA modprobe configuration: EXISTS
+✗ KDE display config saver: NOT FOUND
+✗ Autostart desktop entry: NOT FOUND
+✗ Manual monitor configuration script: NOT FOUND
+
+=== System Configuration Status ===
+GRUB Configuration:
+  GRUB_CMDLINE_LINUX_DEFAULT: ""
+  ✗ acpi.ec_no_wakeup=1: NOT FOUND
+  Current kernel parameters:
+  ✓ acpi.ec_no_wakeup=1: ACTIVE in current boot
+
+NVIDIA Modprobe Configuration:
+  File contents:
+    options nvidia-drm modeset=1
+    options nvidia NVreg_PreserveVideoMemoryAllocations=1
+  ✓ NVreg_PreserveVideoMemoryAllocations=1: PRESENT
+
+Systemd Services Status:
+  User Services:
+    monitor-manager.service: enabled=, active=
+  NVIDIA System Services:
+    nvidia-suspend.service: 
+    nvidia-resume.service: 
+    nvidia-hibernate.service: 
+
+=== Backup Files Status ===
+GRUB backups:
+  -rw-r--r-- 1 root root 1487 Aug 26 21:25 /etc/default/grub.backup.20250826_212515
+  -rw-r--r-- 1 root root 1536 Aug 27 01:01 /etc/default/grub.backup.20250827_010147
+  -rw-r--r-- 1 root root 1536 Aug 27 01:07 /etc/default/grub.backup.20250827_010751
+  -rw-r--r-- 1 root root 1536 Aug 27 01:10 /etc/default/grub.backup.20250827_011030
+NVIDIA modprobe backups:
+  -rw-r--r-- 1 root root 117 Aug 26 21:25 /etc/modprobe.d/nvidia-graphics-drivers-kms.conf.backup.20250826_212517
+  -rw-r--r-- 1 root root 171 Aug 27 01:01 /etc/modprobe.d/nvidia-graphics-drivers-kms.conf.backup.20250827_010147
+  -rw-r--r-- 1 root root 171 Aug 27 01:07 /etc/modprobe.d/nvidia-graphics-drivers-kms.conf.backup.20250827_010753
+  -rw-r--r-- 1 root root 171 Aug 27 01:10 /etc/modprobe.d/nvidia-graphics-drivers-kms.conf.backup.20250827_011032
+
+=== Current Monitor Status ===
+Connected displays:
+  Monitors: 2
+  0: +*DP-0.1 2560/697x1440/392+2560+0  DP-0.1
+  1: +DP-0.3 2560/697x1440/392+0+0  DP-0.3
+
+Display configuration:
+  DP-0 disconnected (normal left inverted right x axis y axis)
+  DP-1 disconnected (normal left inverted right x axis y axis)
+  HDMI-0 disconnected (normal left inverted right x axis y axis)
+  DP-2 connected (normal left inverted right x axis y axis)
+  DP-0.1 connected primary 2560x1440+2560+0 (normal left inverted right x axis y axis) 697mm x 392mm
+  DP-0.3 connected 2560x1440+0+0 (normal left inverted right x axis y axis) 697mm x 392mm
+
+=== Log File Status ===
+Monitor manager log (last 5 entries):
+  Wed Aug 27 01:49:50 EDT 2025: Monitor configuration updated
+  Wed Aug 27 01:49:56 EDT 2025: Monitor configuration updated
+  Wed Aug 27 01:49:56 EDT 2025: Monitor configuration updated
+  Wed Aug 27 01:49:56 EDT 2025: Monitor configuration updated
+  Wed Aug 27 01:49:56 EDT 2025: Monitor configuration updated
+
+==============================================
+Validation Report Complete
+==============================================
+
